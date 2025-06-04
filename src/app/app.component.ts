@@ -13,13 +13,4 @@ import {ProfileInterface} from './data/interfaces/profile.interface';
 })
 export class AppComponent {
   title = 'tik-talk-mentor';
-
-  profileService = inject(ProfileService);
-  profiles: ProfileInterface[] = []
-
-  constructor() {
-    this.profileService.getTestsAccount().subscribe((val) => {
-      this.profiles = val;
-    })
-  }
 }
