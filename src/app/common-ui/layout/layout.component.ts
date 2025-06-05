@@ -1,8 +1,7 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component } from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {SidebarComponent} from '../sidebar/sidebar.component';
-import {ProfileService} from '../../data/services/profile.service';
-import {ProfileInterface} from '../../data/interfaces/profile.interface';
+
 
 @Component({
   selector: 'app-layout',
@@ -14,10 +13,6 @@ import {ProfileInterface} from '../../data/interfaces/profile.interface';
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss'
 })
-export class LayoutComponent implements OnInit {
-  profileService = inject(ProfileService);
+export class LayoutComponent   {
 
-  ngOnInit(){
-    this.profileService.getMe().subscribe()
-  }
 }

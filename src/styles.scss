@@ -4,8 +4,9 @@
 :root{
   --dark-color: #000;
   --light-color: #fff;
-  --primory-color: #ae7aff;
+  --primary-color: #ae7aff;
   --grey-color: #5f646d;
+  --dark-hover-color: #161616
 }
 
 *,
@@ -16,11 +17,17 @@
   padding: 0;
 }
 
+a{
+  text-decoration: none;
+  color: var(--light-color);
+}
+
 body{
   background: var(--dark-color);
   color: var(--light-color);
   font-family: "JetBrains Mono", sans-serif;
   background-image: url(/assets/img/background.jpg);
+  height: 100dvh;
 }
 
 .skill-tag{
@@ -37,7 +44,7 @@ body{
 .btn{
   width: 100%;
   border: 1px solid var(--dark-color);
-  background: var(--primory-color);
+  background: var(--primary-color);
   color: var(--dark-color);
   padding: 10px 20px;
   font-weight: 700;
@@ -74,6 +81,18 @@ body{
 }
 
 .subtitle{
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.medium-text{
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.regular{
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;

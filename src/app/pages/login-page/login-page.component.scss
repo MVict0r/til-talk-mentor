@@ -7,7 +7,7 @@
 }
 
 .login-form{
-  max-width: 440px;
+  width: 440px;
 }
 
 .login-form,
@@ -15,12 +15,26 @@
   place-self: center;
 }
 
-.password-input{
+.input-wrapper{
   position: relative;
 }
 .password-eye-btn{
   position: absolute;
   background: none;
   border: none;
+  right: 20px;
+  bottom: 12px;
+  color: white;
+  cursor: pointer;
 
+}
+
+.password-eye-btn.active{
+  color: var(--primary-color);
+}
+
+.svg-wrapper{
+  position: absolute;
+  right: 20px;
+  bottom: 12px;
 }
