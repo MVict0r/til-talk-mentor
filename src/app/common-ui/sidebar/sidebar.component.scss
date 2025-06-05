@@ -69,6 +69,7 @@
 
   position: absolute;
   bottom: 20px;
+
 }
 
 .sidebar__footer-img{
@@ -81,10 +82,16 @@
   font-weight: 700;
   font-size: 14px;
   color: var(--primary-color);
+
+
 }
 
 .settings-ico{
   width: 14px;
   height: 14px;
   color: var(--primary-color);
+
+  &:hover{
+    color: var(--light-color);
+  }
 }
