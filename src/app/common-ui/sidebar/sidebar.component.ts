@@ -18,7 +18,7 @@ import {ImgUrlPipe} from '../../helpers/pipes/img-url.pipe';
 export class SidebarComponent implements OnInit {
   profileService = inject(ProfileService)
 
-  subscriptions$: Observable<ProfileInterface[]> = this.profileService.getSubscribersShortList()
+  subscriptions$: Observable<ProfileInterface[]> = this.profileService.getSubscribersShortList(3)
   me = this.profileService.me;
 
   ngOnInit() {
@@ -43,19 +43,4 @@ export class SidebarComponent implements OnInit {
     },
   ];
 
-  constructor() {
-    let a = 0
-
-    from([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]).pipe(
-      map(res => res * 2),
-      tap(res => {
-        a = res - 1;
-        console.log('tap: ', a);
-      })
-    ).subscribe(
-      res => {
-        console.log("subscribe: ", res);
-      }
-    )
-  }
 }

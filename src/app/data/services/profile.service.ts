@@ -24,12 +24,16 @@ export class ProfileService {
       )
   }
 
-  getSubscribersShortList(subsAmount = 5){
-    return this.http
-      .get<PagebleInterface<ProfileInterface>>(
-        `${this.baseURL}account/subscribers/?page=1&size=5`)
+  getAccount(id: string){
+    return this.http.get<ProfileInterface>
+    (`${this.baseURL}account/${id}`)
+  }
+
+  getSubscribersShortList(subsAmount: number = 6){
+    return this.http.get<PagebleInterface<ProfileInterface>>
+    (`${this.baseURL}account/subscribers/?page=1&size=${subsAmount}`)
       .pipe(
-        map(res => res.items.slice(1, subsAmount))
+        map(res => res.items.slice(0, subsAmount))
       )
   }
 }
