@@ -36,5 +36,11 @@ export class ProfileService {
         map(res => res.items.slice(0, subsAmount))
       )
   }
+
+  patchProfile(profile: Partial<ProfileInterface>){
+    return this.http.patch<ProfileInterface>(
+      `${this.baseURL}account/me`, profile
+    )
+  }
 }
 
