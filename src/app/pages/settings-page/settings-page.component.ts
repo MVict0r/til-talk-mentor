@@ -1,14 +1,16 @@
-import {Component, effect, inject} from '@angular/core';
+import {Component, effect, inject, ViewChild} from '@angular/core';
 import {ProfileHeaderComponent} from '../../common-ui/profile-header/profile-header.component';
 import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ProfileService} from '../../data/services/profile.service';
 import {firstValueFrom} from 'rxjs';
 import {AvatarUploadComponent} from './avatar-upload/avatar-upload.component';
+import {toObservable} from '@angular/core/rxjs-interop';
+import {AsyncPipe} from '@angular/common';
 
 @Component({
   selector: 'app-settings-page',
   standalone: true,
-  imports: [ProfileHeaderComponent, ReactiveFormsModule, AvatarUploadComponent],
+  imports: [ProfileHeaderComponent, ReactiveFormsModule, AvatarUploadComponent, AsyncPipe],
   templateUrl: './settings-page.component.html',
   styleUrl: './settings-page.component.scss'
 })
@@ -16,7 +18,9 @@ export class SettingsPageComponent {
   fb = inject(FormBuilder)
   profileService = inject(ProfileService);
 
-  profile = this.profileService.me()
+  me$ = toObservable(this.profileService.me);
+
+  @ViewChild(AvatarUploadComponent) avatarUploader!: AvatarUploadComponent
 
   constructor() {
     effect(() => {
@@ -43,6 +47,12 @@ export class SettingsPageComponent {
     this.form.updateValueAndValidity()
 
     if(this.form.invalid) return
+
+    if(this.avatarUploader.avatar){
+      firstValueFrom(
+        this.profileService.uploadAvatar(this.avatarUploader.avatar)
+      )
+    }
 
     //@ts-ignore
     firstValueFrom(this.profileService.patchProfile({

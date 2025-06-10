@@ -29,10 +29,18 @@
   font-size: 14px;
   line-height: 24px;
 
+  &.active,
   &:hover,
   &:focus-visible {
     background: var(--dark-hover-color);
     color: var(--primary-color);
+
+    .ico-svg{
+      width: 14px;
+      height: 12px;
+      color: var(--primary-color);
+    }
+
   }
 }
 
@@ -41,6 +49,7 @@
   height: 12px;
   color: var(--light-color);
 }
+
 
 .to-subscribers {
   display: flex;

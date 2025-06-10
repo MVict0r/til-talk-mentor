@@ -1,13 +1,15 @@
 import {Component, signal} from '@angular/core';
 import {SvgIconComponent} from '../../../common-ui/svg-icon/svg-icon.component';
 import {DndDirective} from '../../../common-ui/directives/dnd.directive';
+import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-avatar-upload',
   standalone: true,
   imports: [
     SvgIconComponent,
-    DndDirective
+    DndDirective,
+    FormsModule
   ],
   templateUrl: './avatar-upload.component.html',
   styleUrl: './avatar-upload.component.scss'
@@ -15,7 +17,7 @@ import {DndDirective} from '../../../common-ui/directives/dnd.directive';
 export class AvatarUploadComponent {
   preview = signal<string>('/assets/img/avatarka-null.png')
 
-  avatar = null;
+  avatar: File | null = null;
 
   fileBrowserHandler(event: Event){
     const file = (event.target as HTMLInputElement)?.files?.[0]

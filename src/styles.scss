@@ -136,6 +136,7 @@ body{
   gap: 16px;
 }
 .tt-form-label__text{
+  font-family: "JetBrains Mono", sans-serif;
   font-size: 12px;
   font-style: normal;
   font-weight: 500;
@@ -143,6 +144,7 @@ body{
   color: var(--light-transparent-color);
 }
 .tt-form-input {
+  font-family: "JetBrains Mono", sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -159,6 +161,7 @@ body{
 }
 
 .tt-textarea{
+  font-family: "JetBrains Mono", sans-serif;
   height: 64px;
   resize: none;
 }
