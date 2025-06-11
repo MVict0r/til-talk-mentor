@@ -2,7 +2,7 @@ import {AfterViewInit, Component, ElementRef, HostListener, inject, Renderer2} f
 import {PostInputComponent} from '../post-input/post-input.component';
 import {PostComponent} from '../post/post.component';
 import {PostService} from '../../../data/services/post.service';
-import {firstValueFrom} from 'rxjs';
+import {audit, debounceTime, firstValueFrom, fromEvent, interval} from 'rxjs';
 
 @Component({
   selector: 'app-post-feed',
@@ -23,8 +23,17 @@ export class PostFeedComponent implements AfterViewInit {
 
   @HostListener('window:resize')
   onWindowResize() {
-    this.resizeFeed()
+    fromEvent(window, 'resize')
+      .pipe(
+        audit(ev => interval(1000))
+      )
+      .subscribe(() => {
+        this.resizeFeed()
+        console.log(1)
+      })
   }
+
+
 
   constructor() {
     firstValueFrom(

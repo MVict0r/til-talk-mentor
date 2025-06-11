@@ -29,6 +29,7 @@ body{
   font-family: "JetBrains Mono", sans-serif;
   background-image: url(/assets/img/background.jpg);
   background-size: cover;
+  background-attachment: fixed;
   height: 100dvh;
 }
 
@@ -174,4 +175,19 @@ body{
   font-family: "JetBrains Mono", sans-serif;
   height: 64px;
   resize: none;
+}
+
+
+
+
+
+::-webkit-scrollbar{
+  background: var(--dark-hover-color);
+  border-radius: 50px;
+  width: 4px;
+}
+::-webkit-scrollbar-thumb{
+  background: var(--primary-color);
+  border-radius: 50px;
+  width: 4px;
 }
