@@ -1,0 +1,14 @@
+@if (avatarUrl(); as avatarUrl) {
+  @if (avatarUrl) {
+    <img
+      [src]="avatarUrl | imgUrl"
+      alt=""
+      class="avatar-img">
+  } @else {
+    <img
+      src="/assets/img/avatarka-null.png"
+      alt=""
+      class="avatar-img"
+    >
+  }
+}
