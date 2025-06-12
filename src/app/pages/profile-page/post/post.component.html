@@ -7,7 +7,8 @@
   <main class="post-body">
     <div class="post-header">
       <strong class="post__author">{{ post.author.firstName }} {{ post.author.lastName }}</strong>
-      <span class="post__created-at">{{ post.createdAt | date: 'dd.MM.YY' }}</span>
+<!--      <span class="post__created-at">{{ post.createdAt | date: 'dd MMMM YYYY' }}</span>-->
+      <span class="post__created-at">{{ post.createdAt | customDate }}</span>
 
     </div>
     <p class="medium-text">{{ post.content }}</p>

@@ -2,7 +2,7 @@ import {AfterViewInit, Component, ElementRef, HostListener, inject, Renderer2} f
 import {PostInputComponent} from '../post-input/post-input.component';
 import {PostComponent} from '../post/post.component';
 import {PostService} from '../../../data/services/post.service';
-import {debounceTime, firstValueFrom, fromEvent} from 'rxjs';
+import {debounceTime, firstValueFrom, fromEvent, take} from 'rxjs';
 
 @Component({
   selector: 'app-post-feed',
@@ -25,7 +25,7 @@ export class PostFeedComponent implements AfterViewInit {
   onWindowResize() {
     fromEvent(window, 'resize')
       .pipe(
-        debounceTime(200)
+        debounceTime(200),
       )
       .subscribe(() => {
         this.resizeFeed()
@@ -39,6 +39,13 @@ export class PostFeedComponent implements AfterViewInit {
     firstValueFrom(
       this.postService.fetchPost()
     )
+
+      const daTe = new Date()
+      const createdDate = new Date("2025-06-11T10:48:55.130519");
+
+      console.log('1daTe', daTe);
+      console.log('2Date', createdDate);
+
   }
 
   ngAfterViewInit() {
