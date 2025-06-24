@@ -6,6 +6,13 @@
   background: var(--dark-color);
   border: 1px solid var(--light-color);
   align-items: center;
+  height: max-content;
+}
+
+.size32{
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
 }
 
 .hidden-textarea{
@@ -13,6 +20,12 @@
   background: var(--dark-color);
   border: none;
   color: var(--light-color);
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.hidden-textarea::placeholder {
+  font-size: 20px;
 }
 
 .send-message-svg{

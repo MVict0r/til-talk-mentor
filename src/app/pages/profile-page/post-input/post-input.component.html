@@ -1,12 +1,19 @@
-<app-avatar-circle
-  class="size32"
-  [avatarUrl]="profile()?.avatarUrl"
-></app-avatar-circle>
+@if (profile()?.avatarUrl) {
+  <app-avatar-circle
+    class="size32"
+    [avatarUrl]="profile()?.avatarUrl"
+  ></app-avatar-circle>
+} @else {
+  <img src="assets/img/avatarka-null.png" class="size32">
+}
 
 <textarea
   [(ngModel)]="postText"
   class="hidden-textarea"
   (input)="onTextAreaInput($event)"
+  name="postText"
+  placeholder="Напишите что-нибудь"
+  (keyup.enter)="onCreatePost()"
 ></textarea>
 
 

@@ -5,6 +5,7 @@ import {SvgIconComponent} from '../../../common-ui/svg-icon/svg-icon.component';
 import {PostService} from '../../../data/services/post.service';
 import {FormsModule} from '@angular/forms';
 import {firstValueFrom} from 'rxjs';
+import {ProfileInterface} from '../../../data/interfaces/profile.interface';
 
 @Component({
   selector: 'app-post-input',
@@ -23,7 +24,8 @@ export class PostInputComponent {
 
   postId = input<number>(0)
   isCommentInput = input<boolean>(false);
-  profile = inject(ProfileService).me
+  profile = input<ProfileInterface>();
+
 
   @Output() created = new EventEmitter()
 
@@ -65,4 +67,5 @@ export class PostInputComponent {
       this.postText = ''
     })
   }
+
 }

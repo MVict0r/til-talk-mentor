@@ -1,8 +1,9 @@
-import {AfterViewInit, Component, ElementRef, HostListener, inject, Renderer2} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, HostListener, inject, input, Renderer2} from '@angular/core';
 import {PostInputComponent} from '../post-input/post-input.component';
 import {PostComponent} from '../post/post.component';
 import {PostService} from '../../../data/services/post.service';
 import {debounceTime, firstValueFrom, fromEvent, take} from 'rxjs';
+import {ProfileInterface} from '../../../data/interfaces/profile.interface';
 
 @Component({
   selector: 'app-post-feed',
@@ -17,6 +18,8 @@ import {debounceTime, firstValueFrom, fromEvent, take} from 'rxjs';
 export class PostFeedComponent implements AfterViewInit {
   postService = inject(PostService);
   feed = this.postService.posts
+
+  profile = input<ProfileInterface>()
 
   hostElement = inject(ElementRef)
   r2 = inject(Renderer2)
@@ -39,13 +42,6 @@ export class PostFeedComponent implements AfterViewInit {
     firstValueFrom(
       this.postService.fetchPost()
     )
-
-      const daTe = new Date()
-      const createdDate = new Date("2025-06-11T10:48:55.130519");
-
-      console.log('1daTe', daTe);
-      console.log('2Date', createdDate);
-
   }
 
   ngAfterViewInit() {
