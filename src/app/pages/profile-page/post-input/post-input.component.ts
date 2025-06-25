@@ -1,6 +1,5 @@
 import {Component, EventEmitter, HostBinding, inject, input, Output, Renderer2} from '@angular/core';
 import {AvatarCircleComponent} from '../../../common-ui/avatar-circle/avatar-circle.component';
-import {ProfileService} from '../../../data/services/profile.service';
 import {SvgIconComponent} from '../../../common-ui/svg-icon/svg-icon.component';
 import {PostService} from '../../../data/services/post.service';
 import {FormsModule} from '@angular/forms';
@@ -26,7 +25,6 @@ export class PostInputComponent {
   isCommentInput = input<boolean>(false);
   profile = input<ProfileInterface>();
 
-
   @Output() created = new EventEmitter()
 
   @HostBinding('class.comment')
@@ -40,7 +38,15 @@ export class PostInputComponent {
     const textarea: HTMLTextAreaElement = event.target as HTMLTextAreaElement;
 
     this.r2.setStyle(textarea, 'height', 'auto');
-    this.r2.setStyle(textarea, 'height', textarea.scrollHeight + 'px');
+    this.r2.setStyle(textarea, 'height', `${textarea.scrollHeight}px`);
+  }
+
+
+  onSend(){
+    if (this.postText.trim()){
+      this.created.emit(this.postText);
+      this.postText = '';
+    }
   }
 
   onCreatePost() {
@@ -67,5 +73,4 @@ export class PostInputComponent {
       this.postText = ''
     })
   }
-
 }

@@ -53,4 +53,27 @@ export class PostFeedComponent implements AfterViewInit {
     const height = window.innerHeight - top - 24 - 24
     this.r2.setStyle(this.hostElement.nativeElement, 'height', `${height}px`);
   }
+
+  onCreatePost(postText: string) {
+    if (!postText) return
+
+    // if (this.isCommentInput()) {
+    //   firstValueFrom(this.postService.createComment({
+    //     text: this.postText,
+    //     authorId: this.profile()!.id,
+    //     postId: this.postId()
+    //   })).then(() => {
+    //     this.postText = ''
+    //     this.created.emit()
+    //   })
+    //
+    //   return
+    // }
+
+    firstValueFrom(this.postService.createPost({
+      title: 'Клевый пост',
+      content: postText,
+      authorId: this.profile()!.id
+    }))
+  }
 }
