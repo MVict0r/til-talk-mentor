@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, HostListener, inject, input, Renderer2} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, HostListener, inject, input, OnDestroy, Renderer2} from '@angular/core';
 import {PostInputComponent} from '../post-input/post-input.component';
 import {PostComponent} from '../post/post.component';
 import {PostService} from '../../../data/services/post.service';
@@ -15,7 +15,7 @@ import {ProfileInterface} from '../../../data/interfaces/profile.interface';
   templateUrl: './post-feed.component.html',
   styleUrl: './post-feed.component.scss'
 })
-export class PostFeedComponent implements AfterViewInit {
+export class PostFeedComponent implements AfterViewInit, OnDestroy {
   postService = inject(PostService);
   feed = this.postService.posts
 
@@ -48,6 +48,9 @@ export class PostFeedComponent implements AfterViewInit {
     this.resizeFeed()
   }
 
+  ngOnDestroy() {
+  }
+
   resizeFeed() {
     const {top} = this.hostElement.nativeElement.getBoundingClientRect();
     const height = window.innerHeight - top - 24 - 24
@@ -56,19 +59,6 @@ export class PostFeedComponent implements AfterViewInit {
 
   onCreatePost(postText: string) {
     if (!postText) return
-
-    // if (this.isCommentInput()) {
-    //   firstValueFrom(this.postService.createComment({
-    //     text: this.postText,
-    //     authorId: this.profile()!.id,
-    //     postId: this.postId()
-    //   })).then(() => {
-    //     this.postText = ''
-    //     this.created.emit()
-    //   })
-    //
-    //   return
-    // }
 
     firstValueFrom(this.postService.createPost({
       title: 'Клевый пост',

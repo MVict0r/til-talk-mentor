@@ -8,6 +8,7 @@ import {CommentComponent} from '../comment/comment.component';
 import {PostService} from '../../../data/services/post.service';
 import {firstValueFrom} from 'rxjs';
 import {CustomDatePipe} from '../../../helpers/pipes/custom-date.pipe';
+import {ProfileInterface} from '../../../data/interfaces/profile.interface';
 
 @Component({
   selector: 'app-post',
@@ -25,6 +26,7 @@ import {CustomDatePipe} from '../../../helpers/pipes/custom-date.pipe';
 })
 export class PostComponent implements OnInit {
   post = input<PostSuccessResponseInterface>();
+  profile = input<ProfileInterface>();
 
   comments = signal<CommentInterface[]>([])
 
@@ -34,12 +36,20 @@ export class PostComponent implements OnInit {
     this.comments.set(this.post()!.comments);
   }
 
-  async onCreated(){
-    const comments = await firstValueFrom(
-      this.postService.getCommentsByPostId(this.post()!.id)
-    )
+  async onCreated(commentText: string) {
+    firstValueFrom(this.postService.createComment({
+      text: commentText,
+      authorId: this.profile()!.id,
+      postId: this.post()!.id
+    })).then(async () => {
+      const comments = await firstValueFrom(
+        this.postService.getCommentsByPostId(this.post()!.id)
+      )
+      this.comments.set(comments);
+    }).catch(err => {
+      console.log("Error create comment", err);
+    })
 
-    this.comments.set(comments);
   }
 
 }

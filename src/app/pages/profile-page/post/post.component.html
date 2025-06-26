@@ -1,13 +1,21 @@
 @if (post(); as post) {
-  <app-avatar-circle
-    class="size32"
-    [avatarUrl]="post.author.avatarUrl"
-  ></app-avatar-circle>
+  @if (post.author.avatarUrl) {
+    <app-avatar-circle
+      class="size32"
+      [avatarUrl]="post.author.avatarUrl"
+    ></app-avatar-circle>
+  } @else {
+    <img
+      src="/assets/img/avatarka-null.png"
+      alt=""
+      class="size32"
+    >
+  }
 
   <main class="post-body">
     <div class="post-header">
       <strong class="post__author">{{ post.author.firstName }} {{ post.author.lastName }}</strong>
-<!--      <span class="post__created-at">{{ post.createdAt | date: 'dd MMMM YYYY' }}</span>-->
+      <!--      <span class="post__created-at">{{ post.createdAt | date: 'dd MMMM YYYY' }}</span>-->
       <span class="post__created-at">{{ post.createdAt | customDate }}</span>
 
     </div>
@@ -16,7 +24,7 @@
     <div class="post-counters">
       <span class="comment-amount">
         <svg icon="comments" class="ico-comments"></svg>
-        <span class="comments-length">{{comments().length}}</span>
+        <span class="comments-length">{{ comments().length }}</span>
       </span>
     </div>
 
@@ -27,7 +35,8 @@
     </div>
 
     <app-post-input
-      (created)="onCreated()"
+      [profile]="profile()"
+      (created)="onCreated($event)"
       [isCommentInput]="true"
       [postId]="post.id"
     ></app-post-input>
