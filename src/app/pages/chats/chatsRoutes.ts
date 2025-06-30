@@ -7,7 +7,7 @@ export const chatsRoutes: Route[] = [
     path: '',
     component: ChatsPageComponent,
     children: [
-      {path: '', component: ChatWorkspaceComponent}
+      {path: ':id', component: ChatWorkspaceComponent}
     ]
   }
 ]
