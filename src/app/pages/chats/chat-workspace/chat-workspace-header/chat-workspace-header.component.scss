@@ -2,12 +2,14 @@
   display: grid;
   place-content: center;
   color: var(--light-color);
+  font-weight: 600;
+  padding: 16px 20px;
   border-bottom: var(--light-border);
 }
 
 .companion-wrapper{
   display: grid;
   grid-template-columns: 32px 1fr;
-  gap: 12px;
+  gap: 18px;
   align-items: center;
 }

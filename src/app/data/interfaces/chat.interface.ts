@@ -16,6 +16,8 @@ export interface MessageInterface {
   createdAt: string
   isRead: boolean
   updatedAt: string
+  user?: ProfileInterface
+  isMine?: boolean
 }
 
 export interface ChatListInterface {

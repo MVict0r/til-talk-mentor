@@ -11,12 +11,12 @@
   [(ngModel)]="postText"
   class="hidden-textarea"
   (input)="onTextAreaInput($event)"
-  (keyup.enter)="onSend()"
+
   name="postText"
   placeholder="Напишите что-нибудь"
 ></textarea>
 
 
-<button class="btn-icon" (click)="onSend()">
+<button class="btn-icon" (click)="onCreatePost()">
   <svg icon="send-message" class="send-message-svg"></svg>
 </button>
