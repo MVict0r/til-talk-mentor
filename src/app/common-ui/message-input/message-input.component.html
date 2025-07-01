@@ -1,1 +1,22 @@
-<p>message-input works!</p>
+@if (me()?.avatarUrl) {
+  <app-avatar-circle
+    class="size32"
+    [avatarUrl]="me()?.avatarUrl"
+  ></app-avatar-circle>
+} @else {
+  <img src="assets/img/avatarka-null.png" class="size32">
+}
+
+<textarea
+  [(ngModel)]="postText"
+  class="hidden-textarea"
+  (input)="onTextAreaInput($event)"
+  (keyup.enter)="onSend()"
+  name="postText"
+  placeholder="Напишите что-нибудь"
+></textarea>
+
+
+<button class="btn-icon" (click)="onSend()">
+  <svg icon="send-message" class="send-message-svg"></svg>
+</button>
