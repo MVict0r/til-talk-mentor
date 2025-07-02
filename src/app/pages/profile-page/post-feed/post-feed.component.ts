@@ -2,7 +2,7 @@ import {AfterViewInit, Component, ElementRef, HostListener, inject, input, OnDes
 import {PostInputComponent} from '../post-input/post-input.component';
 import {PostComponent} from '../post/post.component';
 import {PostService} from '../../../data/services/post.service';
-import {debounceTime, firstValueFrom, fromEvent, take} from 'rxjs';
+import {debounceTime, firstValueFrom, fromEvent, Subscription, take, takeUntil} from 'rxjs';
 import {ProfileInterface} from '../../../data/interfaces/profile.interface';
 
 @Component({
@@ -24,19 +24,7 @@ export class PostFeedComponent implements AfterViewInit, OnDestroy {
   hostElement = inject(ElementRef)
   r2 = inject(Renderer2)
 
-  @HostListener('window:resize')
-  onWindowResize() {
-    fromEvent(window, 'resize')
-      .pipe(
-        debounceTime(200),
-      )
-      .subscribe(() => {
-        this.resizeFeed()
-        console.log(1)
-      })
-  }
-
-
+  resizeSubscription!: Subscription;
 
   constructor() {
     firstValueFrom(
@@ -46,9 +34,19 @@ export class PostFeedComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
     this.resizeFeed()
+
+    this.resizeSubscription = fromEvent(window, 'resize')
+      .pipe(debounceTime(100))
+      .subscribe(() => {
+        this.resizeFeed()
+        console.log(1)
+      })
   }
 
   ngOnDestroy() {
+    if (this.resizeSubscription) {
+      this.resizeSubscription.unsubscribe();
+    }
   }
 
   resizeFeed() {

@@ -13,9 +13,13 @@
   }
 
   <div class="message-container">
-    <strong class="medium-text mb-8">
-      {{ message.user?.firstName }} {{ message.user?.lastName}} {{message.createdAt | date: 'HH:mm'}}
+    <strong class="medium-text mb8">
+      {{ message.user?.firstName }} {{ message.user?.lastName }}
+      <span class="date">
+        {{ message.createdAt | date: 'HH:mm' }}
+      </span>
     </strong>
+
     <div class="message-text">
       {{ message.text }}
     </div>

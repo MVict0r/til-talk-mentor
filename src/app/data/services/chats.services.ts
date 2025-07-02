@@ -27,16 +27,16 @@ export class ChatsService {
   }
 
   getChatById(chatId: number) {
-    return this.http.get<ChatInterface>(`${this.chatsUrl}${chatId}`).pipe(
-      map((chat) => {
-        const patchedMessages = chat.messages.map((message) => {
+    return this.http.get<ChatInterface>(`${this.chatsUrl}${chatId}`)
+      .pipe(map(chat => {
+        const patchedMessages = chat.messages.map(message => {
           return {
             ...message,
             user:
               chat.userFirst.id === message.userFromId
                 ? chat.userFirst
                 : chat.userSecond,
-            isMain: message.userFromId === this.me()!.id,
+            isMine: message.userFromId === this.me()!.id,
           };
         })
 
