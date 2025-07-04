@@ -1,4 +1,4 @@
-import {inject, Injectable, signal} from '@angular/core';
+import {computed, inject, Injectable, signal} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ChatInterface, ChatListInterface, MessageInterface} from '../interfaces/chat.interface';
 import {ProfileService} from './profile.service';
@@ -53,6 +53,7 @@ export class ChatsService {
       })
     );
   }
+
 
   sendMessage(chatId: number, message: string){
     return this.http.post<MessageInterface>(`${this.messagesUrl}send/${chatId}`, {}, {
