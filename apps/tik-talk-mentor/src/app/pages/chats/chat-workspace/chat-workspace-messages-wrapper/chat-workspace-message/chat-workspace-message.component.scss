@@ -1,0 +1,59 @@
+:host {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  grid-gap: 12px;
+}
+
+:host.is-mine {
+  grid-template-columns: max-content 32px;
+  justify-self: end;
+
+  .message-container {
+    order: -1;
+  }
+
+  .message-text {
+    padding: 8px 16px;
+    background: var(--primary-color);
+    color: var(--dark-color);
+    font-weight: 500;
+    width: min-content;
+
+    mask: linear-gradient(#000 0 0),
+      linear-gradient(-135deg, #000 50%, #0000 0) border-box 100% 100% / 200%
+        200% no-repeat;
+    mask-composite: exclude;
+    mask-position: 10% 94%;
+
+    //clip-path: polygon(10px 0, 100% 0, 100% 100%, 0 100%, 0 10px);
+  }
+}
+
+.medium-text {
+  font-weight: 700;
+}
+.date {
+  font-weight: 400;
+}
+
+.message-text {
+  padding: 8px 16px;
+  background: var(--message-color);
+  color: var(--light-color);
+  width: min-content;
+
+  mask: linear-gradient(#000 0 0),
+    linear-gradient(135deg, #000 50%, #0000 0) border-box 100% 100% / 100% 360%
+      no-repeat;
+  mask-composite: exclude;
+  mask-position: 10% 94%;
+  margin-bottom: 10px;
+
+  //clip-path: polygon(10px 0, 100% 0, 100% 100%, 0 100%, 0 10px);
+}
+
+.avatar-img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}

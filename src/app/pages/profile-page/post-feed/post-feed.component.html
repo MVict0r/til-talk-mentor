@@ -1,5 +1,0 @@
-<app-post-input [profile]="profile()" (created)="onCreatePost($event)"></app-post-input>
-
-@for (post of feed(); track post.id) {
-  <app-post [post]="post" [profile]="profile()"></app-post>
-}

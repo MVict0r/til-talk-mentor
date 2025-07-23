@@ -1,0 +1,22 @@
+@if (message(); as message) { @if (message.user?.avatarUrl) {
+<app-avatar-circle
+  [avatarUrl]="message.user?.avatarUrl"
+  class="size32"
+></app-avatar-circle>
+} @else {
+<img src="/assets/img/avatarka-null.png" alt="" class="avatar-img" />
+}
+
+<div class="message-container">
+  <strong class="medium-text mb8">
+    {{ message.user?.firstName }} {{ message.user?.lastName }}
+    <span class="date">
+      {{ message.createdAt | date : 'HH:mm' }}
+    </span>
+  </strong>
+
+  <div class="message-text">
+    {{ message.text }}
+  </div>
+</div>
+}
