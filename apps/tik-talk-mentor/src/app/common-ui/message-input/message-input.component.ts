@@ -1,19 +1,13 @@
 import {
   Component,
   EventEmitter,
-  HostBinding,
   inject,
-  input,
   Output,
   Renderer2,
 } from '@angular/core';
-import { AvatarCircleComponent } from '../avatar-circle/avatar-circle.component';
 import { FormsModule } from '@angular/forms';
-import { SvgIconComponent } from '../svg-icon/svg-icon.component';
-import { PostService } from '../../data/services/post.service';
-import { ProfileInterface } from '../../data/interfaces/profile.interface';
-import { firstValueFrom } from 'rxjs';
-import { ProfileService } from '../../data/services/profile.service';
+import {AvatarCircleComponent, SvgIconComponent} from '@tt/common-ui';
+import {ProfileService} from '@tt/profile';
 
 @Component({
   selector: 'app-message-input',

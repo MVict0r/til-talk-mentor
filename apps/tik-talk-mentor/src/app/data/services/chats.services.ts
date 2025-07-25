@@ -5,8 +5,8 @@ import {
   ChatListInterface,
   MessageInterface,
 } from '../interfaces/chat.interface';
-import { ProfileService } from './profile.service';
 import { map } from 'rxjs';
+import {ProfileService} from '../../../../../../libs/profile/src/lib/data';
 
 @Injectable({
   providedIn: 'root',
