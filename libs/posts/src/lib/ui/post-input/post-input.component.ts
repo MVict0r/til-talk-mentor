@@ -9,9 +9,11 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
-import {ProfileInterface} from '../../../../../profile/src/lib/data';
-import {PostService} from '../../data';
-import {AvatarCircleComponent, SvgIconComponent} from '@tt/common-ui';
+import {
+  AvatarCircleComponent,
+  SvgIconComponent,
+} from 'libs/common-ui/src/lib/components';
+import { PostService, ProfileInterface } from 'libs/data-access/src';
 
 @Component({
   selector: 'app-post-input',

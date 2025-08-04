@@ -14,9 +14,8 @@ import {
   fromEvent,
   Subscription,
 } from 'rxjs';
-import {PostService} from '../../data';
-import {PostInputComponent} from '../../ui';
-import {ProfileInterface} from '../../../../../profile/src/lib/data';
+import { PostInputComponent } from '../../ui';
+import { PostService, ProfileInterface } from 'libs/data-access/src';
 
 @Component({
   selector: 'app-post-feed',

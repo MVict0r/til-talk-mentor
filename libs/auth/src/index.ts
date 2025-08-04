@@ -7,3 +7,5 @@ export {
   authTokenInterceptor,
   AuthService
 }
+
+export * from './lib/feature-login'

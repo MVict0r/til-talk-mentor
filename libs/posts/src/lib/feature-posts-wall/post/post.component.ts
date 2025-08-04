@@ -1,10 +1,17 @@
 import { Component, inject, input, OnInit, signal } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
-import {CustomDatePipe} from '../../../../../../apps/tik-talk-mentor/src/app/helpers/pipes/custom-date.pipe';
 import {CommentComponent, PostInputComponent} from '../../ui';
-import {CommentInterface, PostService, PostSuccessResponseInterface} from '../../data';
-import {AvatarCircleComponent, SvgIconComponent} from '@tt/common-ui';
-import {ProfileInterface} from '@tt/profile';
+import {
+  AvatarCircleComponent,
+  SvgIconComponent,
+} from 'libs/common-ui/src/lib/components';
+import { CustomDatePipe } from 'libs/common-ui/src/lib/pipes';
+import {
+  CommentInterface,
+  PostService,
+  PostSuccessResponseInterface,
+  ProfileInterface,
+} from 'libs/data-access/src';
 
 
 @Component({

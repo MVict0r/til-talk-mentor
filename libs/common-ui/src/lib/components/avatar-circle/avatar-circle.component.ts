@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import {ImgUrlPipe} from '../../../../../../apps/tik-talk-mentor/src/app/helpers/pipes/img-url.pipe';
+import { ImgUrlPipe } from '../../pipes';
 
 @Component({
   selector: 'app-avatar-circle',
