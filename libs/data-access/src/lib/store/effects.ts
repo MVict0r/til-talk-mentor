@@ -1,8 +1,8 @@
 import { inject, Injectable } from '@angular/core';
-import { ProfileService } from '@tt/data-access';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { profileActions } from './actions';
-import { switchMap } from 'rxjs';
+import { map, switchMap } from 'rxjs';
+import { ProfileService } from '../services/profile/profile.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +13,12 @@ export class ProfileEffects {
   actions$ = inject(Actions)
 
   filterProfile = createEffect(() => {
-    this.actions$.pipe(
-      ofType(profileActions.filterEvent),
+    return this.actions$.pipe(
+      ofType(profileActions.filterEvents),
       switchMap(({filters}) => {
-        return this.profileService.filteredProfiles(formValue)
-      })
+        return this.profileService.filterProfile(filters)
+      }),
+      map(res => profileActions.profilesLoaded({profiles:res.items}))
     )
   })
 }

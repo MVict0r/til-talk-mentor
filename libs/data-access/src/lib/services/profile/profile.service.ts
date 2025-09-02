@@ -13,7 +13,6 @@ export class ProfileService {
   baseURL: string = 'https://icherniakov.ru/yt-course/';
   #globalStoreService = inject(GlobalStoreService)
   me = signal<ProfileInterface | null>(null);
-  filteredProfiles = signal<ProfileInterface[]>([]);
 
   getTestsAccount() {
     return this.http.get<ProfileInterface[]>(
@@ -63,11 +62,8 @@ export class ProfileService {
   filterProfile(params: Record<string, any>) {
     return this.http
       .get<PagebleInterface<ProfileInterface>>(
-        `${this.baseURL}account/accounts`,
-        {
+        `${this.baseURL}account/accounts`, {
           params,
-        }
-      )
-      .pipe(tap((res) => this.filteredProfiles.set(res.items)));
+        })
   }
 }
