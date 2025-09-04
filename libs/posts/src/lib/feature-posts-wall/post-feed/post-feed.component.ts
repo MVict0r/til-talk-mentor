@@ -4,8 +4,8 @@ import {
   ElementRef,
   inject,
   input,
-  OnDestroy,
-  Renderer2,
+  OnDestroy, OnInit,
+  Renderer2
 } from '@angular/core';
 import { PostComponent } from '../post/post.component';
 import {
@@ -15,7 +15,9 @@ import {
   Subscription,
 } from 'rxjs';
 import { PostInputComponent } from '../../ui';
-import { PostService, ProfileInterface } from 'libs/data-access/src';
+import { Store } from '@ngrx/store';
+import { postAction, selectedPost } from '../../store';
+import { PostService, ProfileInterface } from '@tt/data-access';
 
 @Component({
   selector: 'app-post-feed',
@@ -24,19 +26,26 @@ import { PostService, ProfileInterface } from 'libs/data-access/src';
   templateUrl: './post-feed.component.html',
   styleUrl: './post-feed.component.scss',
 })
-export class PostFeedComponent implements AfterViewInit, OnDestroy {
+export class PostFeedComponent implements AfterViewInit, OnDestroy, OnInit {
   postService = inject(PostService);
-  feed = this.postService.posts;
+  store = inject(Store)
+  hostElement = inject(ElementRef);
+  r2 = inject(Renderer2);
+
+  // feed = this.postService.posts;
+  feed = this.store.selectSignal(selectedPost)
 
   profile = input<ProfileInterface>();
 
-  hostElement = inject(ElementRef);
-  r2 = inject(Renderer2);
 
   resizeSubscription!: Subscription;
 
   constructor() {
-    firstValueFrom(this.postService.fetchPost());
+    // firstValueFrom(this.postService.fetchPost());
+  }
+
+  ngOnInit(): void {
+    this.store.dispatch(postAction.postFetch())
   }
 
   ngAfterViewInit() {

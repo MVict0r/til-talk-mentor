@@ -2,7 +2,7 @@ import { Component, inject, OnDestroy } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, startWith, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { profileActions } from 'libs/data-access/src/lib/store';
+import { profileActions } from '@tt/profile';
 
 @Component({
   selector: 'app-profile-filters',
