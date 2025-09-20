@@ -7,19 +7,38 @@ import {
   ChatListInterface,
   MessageInterface,
 } from '../../interfaces';
+import { ChatWsService } from '../../interfaces/chats/chat-ws.service';
+import { ChatWsNativeService } from './chat-ws-native.service';
+import { AuthService } from '@tt/auth';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ChatsService {
   http = inject(HttpClient);
+  #authService = inject(AuthService)
   me = inject(GlobalStoreService).me;
+
+  wsAdapter: ChatWsService = new ChatWsNativeService()
 
   activeChatMessages = signal<MessageInterface[]>([]);
 
   baseUrl = 'https://icherniakov.ru/yt-course/';
   chatsUrl = `${this.baseUrl}chat/`;
   messagesUrl = `${this.baseUrl}message/`;
+
+
+  connectWs() {
+    this.wsAdapter.connect({
+      url: `${this.baseUrl}chat/ws`,
+      token: this.#authService.accessToken ?? '',
+      handleMessage: this.handleWSMessage
+    })
+  }
+
+  handleWSMessage(message: unknown) {
+    console.log(message)
+  }
 
   createChat(userId: number) {
     return this.http.post<ChatInterface>(`${this.chatsUrl}${userId}`, {});
